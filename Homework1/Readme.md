@@ -51,3 +51,11 @@ x | y (Euler) | y (midpoint) | y (RK44) | EXACT | %Err(E) | %Err(M) | %Err(RK4)|
 
 | ![](images/graph3.png?raw=true)  | ![](images/graph4.png?raw=true) |
 
+
+1) By using RK1, accuracy decreases. RK4 increases accuracy, but it is more computationally demanding. 
+
+2)As X increases the accuracy decreases.
+
+3)As the step size increases the graph gets less accurate.
+
+4)RK1 uses the first derivative. RK2 uses the beginning point and midpoint. RK4 uses 
