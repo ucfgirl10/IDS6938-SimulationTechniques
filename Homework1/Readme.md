@@ -47,9 +47,10 @@ x | y (Euler) | y (midpoint) | y (RK44) | EXACT | %Err(E) | %Err(M) | %Err(RK4)|
 10 | 2998.124017 | 158.7831645 | -39.0670402 | -38.93988091| -77.99% | -5.08% | 0.00% |
 
 
-| ![](images/graph1.png?raw=true)  | ![](images/graph2.png?raw=true) |
-
-| ![](images/graph3.png?raw=true)  | ![](images/graph4.png?raw=true) |
+![](images/graph1.png?raw=true) 
+![](images/graph2.png?raw=true)
+![](images/graph3.png?raw=true) 
+![](images/graph4.png?raw=true)
 
 
 1) By using RK1, accuracy decreases. RK4 increases accuracy, but it is more computationally demanding. 
