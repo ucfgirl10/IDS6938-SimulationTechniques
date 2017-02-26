@@ -442,7 +442,10 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 				
 			// Ftotal = Felastic +Fdamp -[Ks(|L|-R+Kd i*L/|L|]L/|L|
 
-		//vec3 = -[Spring.m_ks*(distance - spring ]
+	//the vec3 force = -( elastic term + damp term)  * (diff / dist) 
+
+		
+		vec3 = -[spring.m_Ks*(Distance - spring.m_restLen) + spring.m_Kd * ((a.position - b.position) /  )] (a.position - b.position) / Distance;
 	
 	}
 }
