@@ -60,3 +60,13 @@ x | y (Euler) | y (midpoint) | y (RK44) | EXACT | %Err(E) | %Err(M) | %Err(RK4)|
 3)As the step size increases the graph gets less accurate.
 
 4)RK1 uses the first derivative. RK2 uses the beginning point and midpoint. RK4 uses 
+
+
+References
+- I used the following two sources as reference point and to understand some of the code:
+https://github.com/mriveralee/hair-simulation/blob/master/Jello%20Simulation/JelloSim_basecode/JelloSim/jelloMesh.cpp#L18
+
+https://github.com/Jing-Qiu/JelloDemo/blob/master/JelloSim/jelloMesh.cpp
+
+- I also worked multiple time with the following classmates: Rebecca, Olivia, Ashley, Cintya, Joe W., and Ravi.
+We tried balancing our strengths in figuring out the code. What I didn't get some others tried to help me understand and vise versa. 
