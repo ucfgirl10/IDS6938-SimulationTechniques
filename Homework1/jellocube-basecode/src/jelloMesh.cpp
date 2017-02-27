@@ -3,16 +3,16 @@
 #include <algorithm>
 
 // TODO
-double JelloMesh::g_structuralKs = 0.0;
-double JelloMesh::g_structuralKd = 0.0;
-double JelloMesh::g_attachmentKs = 0.0;
-double JelloMesh::g_attachmentKd = 0.0;
-double JelloMesh::g_shearKs = 0.0;
-double JelloMesh::g_shearKd = 0.0;
-double JelloMesh::g_bendKs = 0.0;
-double JelloMesh::g_bendKd = 0.0;
-double JelloMesh::g_penaltyKs = 0.0;
-double JelloMesh::g_penaltyKd = 0.0;
+double JelloMesh::g_structuralKs = 2000.0;
+double JelloMesh::g_structuralKd = 8.0;
+double JelloMesh::g_attachmentKs = 1000.0;
+double JelloMesh::g_attachmentKd = 8.0;
+double JelloMesh::g_shearKs = 1000.0;
+double JelloMesh::g_shearKd = 8.0;
+double JelloMesh::g_bendKs = 1000.0;
+double JelloMesh::g_bendKd = 30.0;
+double JelloMesh::g_penaltyKs = 1000.0;
+double JelloMesh::g_penaltyKd = 8.0;
 
 JelloMesh::JelloMesh() :
 	m_integrationType(JelloMesh::RK4), m_drawflags(MESH | STRUCTURAL),
@@ -477,12 +477,11 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
 		Particle& p = GetParticle(grid, contact.m_p);
 		vec3 normal = contact.m_normal;
 		// TODO
-		//double dist = contact.m_distance;
-		//vec3 diff = -dist * normal;
+		double dist = contact.m_distance;
+		vec3 diff = -dist * normal;
 
-		//p.force = -g_penaltyKs * diff
-		//p.force = 
-
+		p.force = g_penaltyKs * dist + (g_penaltyKd * Dot(p.velocity, contact.m_normal * dist) /dist) * ((contact.m_normal * dist) / abs(dist));
+		
 		
 	}
 }
