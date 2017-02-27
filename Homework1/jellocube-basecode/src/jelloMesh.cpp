@@ -196,6 +196,14 @@ void JelloMesh::InitJelloMesh()
 				if (j < m_cols) AddStructuralSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 1, k));
 				if (i < m_rows) AddStructuralSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j, k));
 				if (k < m_stacks) AddStructuralSpring(GetParticle(g, i, j, k), GetParticle(g, i, j, k + 1));
+
+				if (j < m_cols && i < m_rows) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j + 1, k));
+				if (i < m_rows && k < m_stacks) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j, k + 1));
+				if (k < m_stacks && j < m_stacks) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 1, k + 1));
+
+				if (j < m_cols - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 2, k));
+				if (i < m_rows - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i + 2, j, k));
+				if (k < m_stacks - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i, j, k + 2));
 			}
 		}
 	}
@@ -440,13 +448,24 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 
 		// TODO -  Look at Spring Forces (Advance) on Webcourses
 				
-			// Ftotal = Felastic +Fdamp -[Ks(|L|-R+Kd i*L/|L|]L/|L|
+		// Ftotal = Felastic +Fdamp -[Ks(|L|-R+Kd i*L/|L|]L/|L|
 
-	//the vec3 force = -( elastic term + damp term)  * (diff / dist) 
+		//the vec3 force = -( elastic term + damp term)  * (diff / dist) 
+			
+		vec3 diff = b.position - a.position;
+		double dist = diff.Length();
+		double R = spring.m_restLen;
+		double Ks = spring.m_Ks;
+		double Kd = spring.m_Kd;
 
-		
-		vec3 = -[spring.m_Ks*(Distance - spring.m_restLen) + spring.m_Kd * ((a.position - b.position) /  )] (a.position - b.position) / Distance;
-	
+		if (dist != 0){
+
+			vec3 force = -(Ks*(dist - R) + Kd * (b.velocity - a.velocity) * diff / dist) * (diff / dist);
+
+			a.force += force;
+			b.force += -force;   //  Newtons 3rd law
+		}
+
 	}
 }
 
@@ -457,8 +476,13 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
 		const Intersection& contact = m_vcontacts[i];
 		Particle& p = GetParticle(grid, contact.m_p);
 		vec3 normal = contact.m_normal;
-
 		// TODO
+		//double dist = contact.m_distance;
+		//vec3 diff = -dist * normal;
+
+		//p.force = -g_penaltyKs * diff
+		//p.force = 
+
 		
 	}
 }
@@ -471,31 +495,38 @@ void JelloMesh::ResolveCollisions(ParticleGrid& grid)
 		Particle& pt = GetParticle(grid, result.m_p);
 		vec3 normal = result.m_normal;
 		float dist = result.m_distance;
-
+		double r = 0.7;
 		// TODO
+
+		pt.velocity = pt.velocity - (2 * (pt.velocity * normal)) * (normal*r);
 	}
 }
 
 bool JelloMesh::FloorIntersection(Particle& p, Intersection& intersection)
 {
 	// TODO
-
-	if (p.position[1] < 0.0) { //if you hit the floor
+	float epsilon_delta = 0.5;
+	if (p.position[1] < 0.0) 
+	{ //if you hit the floor
 		intersection.m_p = p.index;
 		intersection.m_distance = -p.position[1];
 		intersection.m_normal = vec3(0.0, 1.0, 0.0);
 		intersection.m_type = CONTACT;
+		cout << "Contact" << endl;
 		return true;
 	}
 
-	else if (p.position[1] > 0.5) { //in between (another scenario)
+	else if (p.position[1] < 0.0 + epsilon_delta) 
+	{ //in between (another scenario)
 		intersection.m_p = p.index;
-		intersection.m_distance = fabs(0.5 - p.position[1]);
+		intersection.m_distance = epsilon_delta - p.position[1]; 
 		intersection.m_normal = vec3(0.0, 1.0, 0.0);
 		intersection.m_type = COLLISION;
+		cout << "Collision" << endl;
 		return true;
 	}
-	else { //if you don't hit the floor
+	else 
+	{ //if you don't hit the floor
 		return false;
 	}
 }
