@@ -3,16 +3,16 @@
 #include <algorithm>
 
 // TODO
-double JelloMesh::g_structuralKs = 2000.0;
+double JelloMesh::g_structuralKs = 3000.0;
 double JelloMesh::g_structuralKd = 8.0;
 double JelloMesh::g_attachmentKs = 1000.0;
-double JelloMesh::g_attachmentKd = 8.0;
-double JelloMesh::g_shearKs = 1000.0;
+double JelloMesh::g_attachmentKd = 7.0;
+double JelloMesh::g_shearKs = 2000.0;
 double JelloMesh::g_shearKd = 8.0;
-double JelloMesh::g_bendKs = 1000.0;
-double JelloMesh::g_bendKd = 30.0;
-double JelloMesh::g_penaltyKs = 1000.0;
-double JelloMesh::g_penaltyKd = 8.0;
+double JelloMesh::g_bendKs = 4000.0;
+double JelloMesh::g_bendKd = 7.0;
+double JelloMesh::g_penaltyKs = 3000.0;
+double JelloMesh::g_penaltyKd = 6.0;
 
 JelloMesh::JelloMesh() :
 	m_integrationType(JelloMesh::RK4), m_drawflags(MESH | STRUCTURAL),
@@ -411,12 +411,27 @@ void JelloMesh::CheckForCollisions(ParticleGrid& grid, const World& world)
 					if (world.m_shapes[i]->GetType() == World::CYLINDER &&
 						CylinderIntersection(p, (World::Cylinder*) world.m_shapes[i], intersection))
 					{
-						m_vcontacts.push_back(intersection);
+						if (intersection.m_type == CONTACT)
+						{
+							m_vcontacts.push_back(intersection);
+						}
+						else if (intersection.m_type == COLLISION)
+						{
+							m_vcollisions.push_back(intersection);
+						}
 					}
 					else if (world.m_shapes[i]->GetType() == World::GROUND &&
 						FloorIntersection(p, intersection))
 					{
-						m_vcontacts.push_back(intersection);
+						if (intersection.m_type==CONTACT) 
+						{ 
+							m_vcontacts.push_back(intersection); 
+						}
+						else if (intersection.m_type==COLLISION)
+						{
+							m_vcollisions.push_back(intersection);
+						}
+
 					}
 				}
 			}
@@ -452,7 +467,7 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 
 		//the vec3 force = -( elastic term + damp term)  * (diff / dist) 
 			
-		vec3 diff = b.position - a.position;
+		vec3 diff = a.position - b.position;
 		double dist = diff.Length();
 		double R = spring.m_restLen;
 		double Ks = spring.m_Ks;
@@ -460,14 +475,16 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 
 		if (dist != 0){
 
-			vec3 force = -(Ks*(dist - R) + Kd * (b.velocity - a.velocity) * diff / dist) * (diff / dist);
-
+			vec3 force = -(Ks*(dist - R) +  Kd * ((b.velocity - a.velocity) * diff) / dist) * (diff / dist);
 			a.force += force;
 			b.force += -force;   //  Newtons 3rd law
 		}
 
 	}
 }
+
+
+
 
 void JelloMesh::ResolveContacts(ParticleGrid& grid)
 {
@@ -479,10 +496,12 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
 		// TODO
 		double dist = contact.m_distance;
 		vec3 diff = -dist * normal;
+		double ps = g_penaltyKs;
+		double pd = g_penaltyKd;
+		
+		p.force = (g_penaltyKs * dist + (g_penaltyKd * Dot(p.velocity, contact.m_normal * dist) / dist)) * (contact.m_normal * dist / abs(contact.m_distance));
+		p.velocity = vec3(0.0, 0.5, 0.0);
 
-		p.force = g_penaltyKs * dist + (g_penaltyKd * Dot(p.velocity, contact.m_normal * dist) /dist) * ((contact.m_normal * dist) / abs(dist));
-		
-		
 	}
 }
 
@@ -539,6 +558,9 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder,
 	double cylinderRadius = cylinder->r;
 
 	// TODO
+
+
+
 	return false;
 }
 
