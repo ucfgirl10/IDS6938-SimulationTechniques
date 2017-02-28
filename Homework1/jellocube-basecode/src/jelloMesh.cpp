@@ -4,14 +4,14 @@
 
 // TODO
 double JelloMesh::g_structuralKs = 3000.0;
-double JelloMesh::g_structuralKd = 8.0;
+double JelloMesh::g_structuralKd = 7.5;
 double JelloMesh::g_attachmentKs = 1000.0;
 double JelloMesh::g_attachmentKd = 7.0;
 double JelloMesh::g_shearKs = 2000.0;
 double JelloMesh::g_shearKd = 8.0;
 double JelloMesh::g_bendKs = 4000.0;
-double JelloMesh::g_bendKd = 7.0;
-double JelloMesh::g_penaltyKs = 3000.0;
+double JelloMesh::g_bendKd = 8.0;
+double JelloMesh::g_penaltyKs = 2000.0;
 double JelloMesh::g_penaltyKd = 6.0;
 
 JelloMesh::JelloMesh() :
@@ -185,6 +185,7 @@ void JelloMesh::InitJelloMesh()
 		}
 	}
 
+
 	// Setup structural springs
 	ParticleGrid& g = m_vparticles;
 	for (int i = 0; i < m_rows + 1; i++)
@@ -192,21 +193,23 @@ void JelloMesh::InitJelloMesh()
 		for (int j = 0; j < m_cols + 1; j++)
 		{
 			for (int k = 0; k < m_stacks + 1; k++)
-			{
+			{	//structural springs
 				if (j < m_cols) AddStructuralSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 1, k));
 				if (i < m_rows) AddStructuralSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j, k));
 				if (k < m_stacks) AddStructuralSpring(GetParticle(g, i, j, k), GetParticle(g, i, j, k + 1));
-
+				//shear springs
 				if (j < m_cols && i < m_rows) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j + 1, k));
 				if (i < m_rows && k < m_stacks) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j, k + 1));
 				if (k < m_stacks && j < m_stacks) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 1, k + 1));
-
+				//bend springs
 				if (j < m_cols - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 2, k));
 				if (i < m_rows - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i + 2, j, k));
 				if (k < m_stacks - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i, j, k + 2));
+
 			}
 		}
 	}
+
 
 	// Init mesh geometry
 	m_mesh.clear();
@@ -500,8 +503,9 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
 		double pd = g_penaltyKd;
 		
 		p.force = (g_penaltyKs * dist + (g_penaltyKd * Dot(p.velocity, contact.m_normal * dist) / dist)) * (contact.m_normal * dist / abs(contact.m_distance));
-		p.velocity = vec3(0.0, 0.5, 0.0);
-
+		//p.velocity = vec3(0.0, 0.5, 0.0);
+		p.velocity = vec3(0.0, 1.0, 0.0);
+		
 	}
 }
 
@@ -516,7 +520,7 @@ void JelloMesh::ResolveCollisions(ParticleGrid& grid)
 		double r = 0.7;
 		// TODO
 
-		pt.velocity = pt.velocity - (2 * (pt.velocity * normal)) * (normal*r);
+		pt.velocity = pt.velocity - (2.0 * (pt.velocity * normal)) * (normal*r);
 	}
 }
 
