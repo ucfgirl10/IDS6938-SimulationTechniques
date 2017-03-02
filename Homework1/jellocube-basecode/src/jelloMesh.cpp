@@ -660,6 +660,23 @@ void JelloMesh::MidPointIntegrate(double dt)
 				}
 			}
 		}
+
+		// Put it all together
+		for (int i = 0; i < m_rows + 1; i++)
+		{
+			for (int j = 0; j < m_cols + 1; j++)
+			{
+				for (int k = 0; k < m_stacks + 1; k++)
+				{
+					Particle& p = GetParticle(source, i, j, k);
+					Particle& k1 = GetParticle(accum1, i, j, k);
+					Particle& k2 = GetParticle(accum2, i, j, k);
+
+					p.velocity = p.velocity + dt * ((0.5 * p.force + 0.5 * k1.force) * 1 / p.mass); // Midpoint
+					p.position = p.position + dt * (0.5 * p.velocity + 0.5 * k1.velocity);
+				}
+			}
+		}
 	}
 }
 
