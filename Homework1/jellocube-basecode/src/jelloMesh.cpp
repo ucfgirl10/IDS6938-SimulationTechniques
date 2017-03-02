@@ -4,15 +4,15 @@
 
 // TODO
 double JelloMesh::g_structuralKs = 3000.0;
-double JelloMesh::g_structuralKd = 7.5;
+double JelloMesh::g_structuralKd = 5.5;
 double JelloMesh::g_attachmentKs = 1000.0;
-double JelloMesh::g_attachmentKd = 7.0;
+double JelloMesh::g_attachmentKd = 5.0;
 double JelloMesh::g_shearKs = 2000.0;
-double JelloMesh::g_shearKd = 7.0;
-double JelloMesh::g_bendKs = 4000.0;
-double JelloMesh::g_bendKd = 7.0;
+double JelloMesh::g_shearKd = 5.0;
+double JelloMesh::g_bendKs = 3000.0;
+double JelloMesh::g_bendKd = 5.0;
 double JelloMesh::g_penaltyKs = 2000.0;
-double JelloMesh::g_penaltyKd = 6.0;
+double JelloMesh::g_penaltyKd = 4.0;
 
 JelloMesh::JelloMesh() :
 	m_integrationType(JelloMesh::RK4), m_drawflags(MESH | STRUCTURAL),
@@ -200,8 +200,8 @@ void JelloMesh::InitJelloMesh()
 				//shear springs
 				if (j < m_cols && i < m_rows) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j + 1, k));
 				if (i < m_rows && k < m_stacks) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i + 1, j, k + 1));
-				if (k < m_stacks && j < m_stacks) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 1, k + 1));
-				if (k < m_stacks && j < m_stacks && i < m_rows) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i+1, j + 1, k + 1));
+				if (k < m_stacks && j < m_cols) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 1, k + 1));
+				if (k < m_stacks && j < m_cols && i < m_rows) AddShearSpring(GetParticle(g, i, j, k), GetParticle(g, i+1, j + 1, k + 1));
 				//bend springs
 				if (j < m_cols - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i, j + 2, k));
 				if (i < m_rows - 1) AddBendSpring(GetParticle(g, i, j, k), GetParticle(g, i + 2, j, k));
@@ -560,10 +560,31 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder, Jel
 	double cylinderRadius = cylinder->r;
 
 	// TODO
+	vec3 point = cylinderStart + ((Dot((p.position - cylinderStart), cylinderAxis) / cylinderAxis.SqrLength())*cylinderAxis); //cylindarStart + time * cylinderAxis
+	vec3 normal = p.position - point;
 
+	double dist = normal.Length();
+	normal = normal.Normalize();
 
-
-	return false;
+	if (dist < cylinderRadius)
+	{
+		result.m_p = p.index;
+		result.m_distance = cylinderRadius;
+		result.m_type = CONTACT;
+		result.m_normal = normal;
+		return true;
+	}
+	else if (dist < cylinderRadius + 0.5)
+	{
+		result.m_p = p.index;
+		result.m_distance = cylinderRadius;
+		result.m_type = COLLISION;
+		result.m_normal = normal;
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void JelloMesh::EulerIntegrate(double dt)
