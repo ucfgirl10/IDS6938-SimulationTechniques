@@ -17,7 +17,7 @@ The assignment is due: Monday, February 27 at 11:59PM (EST)
 | 0.1  | 0.2 | 0.3 | 0.4 | 
 | 0.1  | 0.2 | 0.3 | 0.4 | 
 
-TAKING 1 LATE DAY!!!!!
+TAKING 2 LATE DAYS!!!!!
 
 HW PART 1 
 
