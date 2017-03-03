@@ -1,26 +1,9 @@
-#Homework 1 : The Jello Cube (Continuous Simulation Assignment
-## IDS6938-Simulation Techniques - [University of Central Florida](http://www.ist.ucf.edu/grad/)
+# IDS6938-Simulation Techniques Homework 1 : The Jello Cube (Continuous Simulation Assignment)
 
+#TAKING 2 LATE DAYS!!!!!
 
-This is the framework for homework #1. Please first read the [homework writeup](HomeWork%231.pdf).
-
-The assignment is due: Monday, February 27 at 11:59PM (EST)
-
-| undeformed jello  | deformed jello |
-| ------------- | ------------- |
-| ![](images/undeformed3.png?raw=true)  | ![](images/deformed3.png?raw=true) |
-
-| RK1  | RK2 | RK4 | Exact |
-| ------------- | ------------- | ------------- | ------------- |
-| 0.1  | 0.2 | 0.3 | 0.4 |
-| 0.1  | 0.2 | 0.3 | 0.4 | 
-| 0.1  | 0.2 | 0.3 | 0.4 | 
-| 0.1  | 0.2 | 0.3 | 0.4 | 
-
-TAKING 2 LATE DAYS!!!!!
-
-HW PART 1 
-
+##PART 1
+### C. Numerical and exact values
 x | y (Euler) | y (midpoint) | y (RK44) | EXACT | %Err(E) | %Err(M) | %Err(RK4)|
 --- | --- | --- | --- | --- | --- | --- | --- |
 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -49,26 +32,42 @@ x | y (Euler) | y (midpoint) | y (RK44) | EXACT | %Err(E) | %Err(M) | %Err(RK4)|
 10 | 2998.124017 | 158.7831645 | -39.0670402 | -38.93988091| -77.99% | -5.08% | 0.00% |
 
 
-![](images/graph1.png?raw=true) 
+![](images/graph1.png?raw=true)
 ![](images/graph2.png?raw=true)
-![](images/graph3.png?raw=true) 
+![](images/graph3.png?raw=true)
 ![](images/graph4.png?raw=true)
 
+### F. Analyze your results
+1. By using RK1, accuracy decreases. RK4 increases accuracy, but it is more computationally demanding.
 
-1) By using RK1, accuracy decreases. RK4 increases accuracy, but it is more computationally demanding. 
+2. As X increases the accuracy decreases.
 
-2)As X increases the accuracy decreases.
+3. As the step size increases the graph gets less accurate.
 
-3)As the step size increases the graph gets less accurate.
+4. RK1 uses the first derivative. RK2 uses the beginning point and midpoint. RK4 uses 
 
-4)RK1 uses the first derivative. RK2 uses the beginning point and midpoint. RK4 uses 
+##Part 2
+
+##Part 3
+1. What is the effect of the Ks and Kd parameters on the jello?
+By increasing the spring constant, Ks, the jello maintains stability and does not disintegrate (this happens with low Ks). The damping constant, Kd, helps effects the velocity of the cube. With higher Kd, the cube goes slower, while with lower Kd, the cube can maintain a fluid motion.
+
+2. What are the benefits and the drawbacks of the colision system used here? What are some different ways in which it could be improved?
+text
+
+3. What are some example systems you could model with Mass-spring simulations? Explain how you would construct the model.
+Some examples of systems that use mass-spring simulations are: hair (ex: Rapunzel!), water (ex: Moana!), grass (ex: Pocahontas?!) , and fur (ex: Lion King?). In these systems, particles are connected by structural and bend springs. More specifically, if we take the example of hair, springs are used to control the shape of the hair, as well as the movement. Rapunzel's hair doesn't get all tangled because of springs and forces used to account for movement. These forces also taken into account during collision detection, in the sense that if the hair collides with Rapunzel's ear, a response is implemented and penalty forces are applied.
+
+4. Does the jello behave realistically? What integration method did you choose to make the jello stable?
+My jello cube definitely does not behave realistically. This is probably due to my forces, as my jello cube does not bounce and only has a very minor wiggle. I chose to use the RK4 method of integration, because it is the most stable and has the most accuracy.
+
+5. How would you model and simulate water (in terms of a continuous simulation)?
 
 
-References
-- I used the following two sources as reference point and to understand some of the code:
-https://github.com/mriveralee/hair-simulation/blob/master/Jello%20Simulation/JelloSim_basecode/JelloSim/jelloMesh.cpp#L18
+##References
+* I used the following two sources as reference point and to understand some of the code:
+⋅⋅* https://github.com/mriveralee/hair-simulation/blob/master/Jello%20Simulation/JelloSim_basecode/JelloSim/jelloMesh.cpp#L18
+⋅⋅* https://github.com/Jing-Qiu/JelloDemo/blob/master/JelloSim/jelloMesh.cpp
 
-https://github.com/Jing-Qiu/JelloDemo/blob/master/JelloSim/jelloMesh.cpp
-
-- I also worked multiple time with the following classmates: Rebecca, Olivia, Ashley, Cintya, Joe W., and Ravi.
-We tried balancing our strengths in figuring out the code. What I didn't get some others tried to help me understand and vise versa. 
+* I also worked multiple time with the following classmates: Rebecca, Olivia, Ashley, Cintya, Joe W., and Ravi.
+We tried balancing our strengths in figuring out the code. What I didn't get some others tried to help me understand and vise versa.
