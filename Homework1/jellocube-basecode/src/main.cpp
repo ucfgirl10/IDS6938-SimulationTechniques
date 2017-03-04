@@ -8,12 +8,14 @@
 #include <IL/ilut.h>
 
 #include "jelloMesh.h"
+#include "jelloMesh2.h"
 #include "world.h"
 
 #define MWIDTH 1280
 #define MHEIGHT 720
 
 JelloMesh theJello;
+JelloMesh2 theJello2;
 Camera theCamera;
 World theWorld("../worlds/cylinders.xml");
 mmc::FpsTracker theFpsTracker;
@@ -29,7 +31,7 @@ bool isRecording = false;
 
 void initCamera()
 {
-   double w = theJello.GetWidth()*2;   
+   double w = theJello.GetWidth()*3;   
    double h = theJello.GetHeight()*2;   
    double d = theJello.GetDepth()*2;   
    double angle = 0.5*theCamera.dfltVfov*M_PI/180.0;
@@ -180,6 +182,7 @@ void onTimerCb(int value)
    if (isRunning) 
    {
        theJello.Update(0.01, theWorld); 
+	   theJello2.Update(0.01, theWorld);
        if (isRecording) grabScreen();
    }
 
@@ -271,6 +274,7 @@ void onDrawCb()
 
     theWorld.Draw();
     theJello.Draw(cpos);
+	theJello2.Draw(cpos);
     drawOverlay();
     glutSwapBuffers();
 }

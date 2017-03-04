@@ -5,14 +5,14 @@
 // TODO
 double JelloMesh::g_structuralKs = 3000.0;
 double JelloMesh::g_structuralKd = 5.5;
-double JelloMesh::g_attachmentKs = 1000.0;
-double JelloMesh::g_attachmentKd = 5.0;
+double JelloMesh::g_attachmentKs = 2000.0;
+double JelloMesh::g_attachmentKd = 7.0;
 double JelloMesh::g_shearKs = 2000.0;
 double JelloMesh::g_shearKd = 5.0;
 double JelloMesh::g_bendKs = 3000.0;
-double JelloMesh::g_bendKd = 5.0;
+double JelloMesh::g_bendKd = 8.0;
 double JelloMesh::g_penaltyKs = 2000.0;
-double JelloMesh::g_penaltyKd = 4.0;
+double JelloMesh::g_penaltyKd = 6.0;
 
 JelloMesh::JelloMesh() :
 	m_integrationType(JelloMesh::RK4), m_drawflags(MESH | STRUCTURAL),
@@ -180,7 +180,7 @@ void JelloMesh::InitJelloMesh()
 				float x = -m_width*0.5f + wcellsize*i;
 				float y = 0.5 + hcellsize*j;
 				float z = -m_depth*0.5f + dcellsize*k;
-				m_vparticles[i][j][k] = Particle(GetIndex(i, j, k), vec3(x, y, z));
+				m_vparticles[i][j][k] = Particle(GetIndex(i, j, k), vec3(x+0.8, y+1, z));
 			}
 		}
 	}
@@ -267,7 +267,8 @@ void JelloMesh::DrawMesh(const vec3& eyePos)
 	float white[4] = { 1.0,1.0,1.0,1.0 };
 	float pink[4] = { 0.5,0.0,0.0,1.0 };
 	float black[4] = { 0.0,0.0,0.0,1.0 };
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, red);
+	float purple[4] = { 1.0,0.0,1.0,0.5 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, purple);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, black);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, pink);
@@ -558,15 +559,13 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder, Jel
 	vec3 cylinderEnd = cylinder->end;
 	vec3 cylinderAxis = cylinderEnd - cylinderStart;
 	double cylinderRadius = cylinder->r;
-
-	// TODO
-	vec3 point = cylinderStart + ((Dot((p.position - cylinderStart), cylinderAxis) / cylinderAxis.SqrLength())*cylinderAxis); //cylindarStart + time * cylinderAxis
+	vec3 point = cylinderStart + cylinder->r * cylinderAxis;
 	vec3 normal = p.position - point;
 
 	double dist = normal.Length();
 	normal = normal.Normalize();
 
-	if (dist < cylinderRadius)
+	if (dist < cylinderRadius + 0.05)
 	{
 		result.m_p = p.index;
 		result.m_distance = cylinderRadius;
@@ -574,7 +573,7 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder, Jel
 		result.m_normal = normal;
 		return true;
 	}
-	else if (dist < cylinderRadius + 0.5)
+	else if (dist < cylinderRadius && dist > cylinderRadius + 0.04)
 	{
 		result.m_p = p.index;
 		result.m_distance = cylinderRadius;
@@ -582,9 +581,8 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder, Jel
 		result.m_normal = normal;
 		return true;
 	}
-	else {
+	else
 		return false;
-	}
 }
 
 void JelloMesh::EulerIntegrate(double dt)
