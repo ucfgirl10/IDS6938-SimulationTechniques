@@ -1,7 +1,6 @@
-#IDS6938-Simulation Techniques
-## Homework 2 :  Discrete-Event Simulation Assignment
-
-# Assignment for Karla Badillo-Urquiola
+# IDS6938-Simulation Techniques
+# Homework 2 :  Discrete-Event Simulation Assignment
+### Assignment for Karla Badillo-Urquiola
 
 ##Part 1: Empirical Tests of Randomness (20 pts).
 
