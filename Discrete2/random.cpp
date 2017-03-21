@@ -18,10 +18,10 @@ int main()
 	std::random_device rd;
 
 	// 1) Change random number generators
-	std::mt19937_64 engine(rd());
-	//std::knuth_b engine(rd());
-	//std::minstd_rand engine(rd());
-	//std::ranlux48 engine(rd());
+	std::mt19937_64 engine(rd());   //Marsenne Twister
+	//std::knuth_b engine(rd());  //Knuth-B
+	//std::minstd_rand engine(rd()); //Minimal Standard
+	//std::ranlux48 engine(rd()); //Ranlux
 
 
 	// Another seed intialization routine (this is just here for future reference for you.)
@@ -68,14 +68,14 @@ int main()
 
 	// Print Results to File
 	std::ofstream myfile;
-	myfile.open("histogram_results.txt");
+	myfile.open("Ranlux_histogram_results.txt");
 	for (auto p : hist) {
 		myfile << std::fixed << std::setprecision(1) << std::setw(2)
 			<< p.first << "\t" << p.second  << std::endl;
 	}
 	myfile.close();
 
-	myfile.open("raw_results.txt");
+	myfile.open("Ranlux_raw_results.txt");
 	for (auto p : raw) {
 		myfile << std::fixed << std::setprecision(5) << std::setw(2)
 			<< p << std::endl;
@@ -84,7 +84,7 @@ int main()
 
 
 	//if you choose to write useful stats here
-	myfile.open("useful_stats.txt");
+	myfile.open("Ranlux_useful_stats.txt");
 	double sum = std::accumulate(raw.begin(), raw.end(), 0.0);
 	double mean = sum / raw.size();
 	myfile << "mean: " << mean << std::endl;
