@@ -9,17 +9,23 @@
 The outputs of the random number generators give how often a value appears in the set of data. Therefore, we are comparing the frequency distributions of the five generators. Histograms are useful for showing the frequency distribution of a set of data. Since all five histograms look the same we can infer that the values of the five generators have uniform values.
 ![](images/usefulcharts_part1a.png?raw=true)
 **Spearman's Rank Correlation Coefficient Output**
-I chose to run the Spearman's Rank Correlation Coefficient to find the stregnth of association and relationship between the five random number generators. According to the following output, Ranlux and Knuth-B are statistically significant at the 0.05 level.
+I chose to run the Spearman's Rank Correlation Coefficient to find the stregnth of association and relationship between the five random number generators. According to the following output, Ranlux and Knuth-B are statistically significant at the 0.05 level. However, it is a weak correlation. The rest did not have any significant relationships.
 ![](images/Spearman_output.png?raw=true)
-**Chi-Square Test Output**
-Pearson's Chi-square test enables us to compare the frequencies of 
+**Kolmogorov-Smirnov Test Output**
+For my second analysis I chose the Kolmogorov-Smirnov test. I chose this analysis because it compares the sample scores to a reference uniform distribution. According to the output below, the test distributions (our sample data) are uniform. None of the significant levels are less than .005, therefore they are not significant and the values can be considered uniform.
+![](images/K-Stest_output.png?raw=true)
 
 **(b) - 2pts:**  Starting with the original N=100000, I varied the N to 1000 and then to 200000. Below are the histograms for both N=1000 and N=200000. We can see that all the histograms look similar to each other and to the original histograms from part 1a. This is expected, since we are using uniform distribution.
 ![](images/usefulcharts_part1c.png?raw=true)
-When looking at the means and standard deviations, we can see that there are 
+When looking at the means and standard deviations, they stay relatively similar.
+![](images/Mean-SD.png?raw=true)
+
 **(c) - 3pts:** I selected the Mersenne Twister Generator Engine and the following five distributions: Normal, Poisson, Binomial, Uniform (Real), and Uniform(Integer). In the following histograms show the 
+
 **(d)- 4pts:** Generate random numbers in two-dimensions for a unit square. Plot the results for the different random number engines. The vertical axis should vary N in increasing order. The horizontal axis should show of the random number engines.
+
 **(e)- 4pts:** Generate random numbers in two-dimensions for a unit square. Plot the results for the different distributions. The vertical axis should vary N in increasing order. The horizontal axis should show of the random number engines. (See [Random Numbers Webcourse page](https://webcourses.ucf.edu/courses/1246518/pages/random-numbers?module_item_id=10541423) for a rough idea what you should produce.)
+
 **(f)- 4pts:** Repeat parts (d) and (e) with a unit circle.
 
 ##Part 2 - Snakes and Ladders (Discrete Event Markov Chains and Monte Carlo Simulations) (30 pts)
