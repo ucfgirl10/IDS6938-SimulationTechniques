@@ -121,6 +121,14 @@ int main(int argc, char* argv[])
    //TODO Output statistics airport senario.
    Checkin.get_current_time();
 	Checkin.plot_results_output();
+	Security1.get_current_time();
+	Security1.plot_results_output();
+	Security2.get_current_time();
+	Security2.plot_results_output();
+	Security3.get_current_time();
+	Security3.plot_results_output();
+	Boarding.get_current_time();
+	Boarding.plot_results_output();
 
    Checkin.output(); cout << "Checkin" << endl;
    Security1.output(); cout << "Security1" << endl;

@@ -2,7 +2,7 @@ int size = 101;  //TODO this should be 101
 Eigen::MatrixXf TransitionMatrix(size, size);
 Eigen::VectorXf v(size);
 
-unsigned int ROLLS = 0; //TODO
+unsigned int ROLLS = 1; //TODO Random number?????
 
 double prob = 1.0/6.0 ;  //TODO this should be 1.0/6.0
 double two = 2.0/6.0;
