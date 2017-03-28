@@ -61,24 +61,15 @@ Run the same simulation and analyze your results similar to part (b) for the pro
 
 ##Part 3 - Discrete Event Simulation - Queue Simulation (30 pts)
 
-**(a) - 4pts:** To start create the senario in the figure above in *main.cpp*. Checkin will have a *mu* of 53 and accept new arrivals, the security gates will have a *mu* of 20, and will not accept new arrivials, boarding will have a *mu* of 80. You will have to set up  the appropriate *MM1_Queue* objects to capture the functionality above.
-**(b) - 4pts:** You want to add a check that your process is within an error range *is_within_error_range(float)* where the error range will be 0.002. You also want to process the next event, and add an external arrival where marked.
-**(c) - 3pts:** in *mm1_queue.cpp* : add code to caculate the expected results for: 
-  *  expected_server_utilization 
-  *    expected idle prob
-  *   expected queue length 
-  *  expected number customers 
-  * expected waiting time
-  * expected response time 
+**(a) - 4pts:** done
+**(b) - 4pts:** done
+**(c) - 3pts:** done
 **(d) - 4pts:** Write code to call the functions to output and generate data from the airport senario. Plot and analyze the useful statistics/results in the program of your choice.  (Hint -  basically call  *.output();* on the MM1_Queue objects you create. Hint2 - two other use functions are *get_current_time()* and  *plot_results_output()* call intially on your intial MM1_Queue object.)  
 **(e) - 15pts:** Download the personal edition of **[Anylogic](http://www.anylogic.com/)**, read through the [documentation](http://www.anylogic.com/learn-simulation) as needed, and set up the same type of simulation discussed above.
 
 
 ##Part 4 - Implementing Extra Features (10 pts)
 Implementing 2 features on the extra features list. Pick any feature on the "*extra features*" list below to customize your assignment to fit your interests. Please document this in your writeup. (*Note: These should total 10pts. You could successfully implement a feature worth 10pts or greater. This also fulfills this requirement. The features are assigned points based on difficulty. The 5pt features are more straightforward.*)
-
-##Part 5 - Final Report (10 pts)
-Write up the results to the previous sections in the main *readme.md* in your forked repository. Turn in the URL for your fork in webcourses. Be visual. The report should contain the graphs and analysis requested. I have high expectations for the documentation here and you should allot the proper time to compose the writeup.
 
 
 ##Extra Features (Extra Credit - 25pts)
