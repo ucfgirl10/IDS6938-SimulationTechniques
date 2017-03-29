@@ -64,7 +64,7 @@ Run the same simulation and analyze your results similar to part (b) for the pro
 **(b) - 4pts:** done
 **(c) - 3pts:** done
 **(d) - 4pts:** Write code to call the functions to output and generate data from the airport senario. Plot and analyze the useful statistics/results in the program of your choice.  (Hint -  basically call  *.output();* on the MM1_Queue objects you create. Hint2 - two other use functions are *get_current_time()* and  *plot_results_output()* call intially on your intial MM1_Queue object.)
-**(e) - 15pts:** The following image shows my initial queue logic model and animation.
+**(e) - 15pts:** The following image shows my initial queue model and animation.
 ![](images/logicmodel.png?raw=true)
 ![](images/logicmodelanimation.png?raw=true)
 
@@ -78,3 +78,4 @@ Run the same simulation and analyze your results similar to part (b) for the pro
 ##Extra Features (Extra Credit - 25pts)
 * **(10 Points)** - Add a 3D visualization to AnyLogic for Part 3.
 ![](images/3Dmodelanimation.png?raw=true)
+![](images/3Dmodelanimation2.png?raw=true)
