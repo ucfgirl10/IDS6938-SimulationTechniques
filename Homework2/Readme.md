@@ -17,11 +17,12 @@ For my second analysis I chose the Kolmogorov-Smirnov test. I chose this analysi
 ![](images/K-Stest_output.png?raw=true)
 
 **(b) - 2pts:**  Starting with the original N=100000, I varied the N to 1000 and then to 200000. Below are the histograms for both N=1000 and N=200000. We can see that all the histograms look similar to each other and to the original histograms from part 1a. This is expected, since we are using uniform distribution.
-![](images/usefulcharts_part1c.png?raw=true)
+![](images/usefulcharts_part1b.png?raw=true)
 When looking at the means and standard deviations, they stay relatively similar.
 ![](images/Mean-SD.png?raw=true)
 
-**(c) - 3pts:** I selected the Mersenne Twister Generator Engine and the following five distributions: Normal, Poisson, Binomial, Uniform (Real), and Uniform(Integer). In the following histograms show the
+**(c) - 3pts:** I selected the Mersenne Twister Generator Engine and the following five distributions: Normal, Poisson, Binomial, Uniform (Real), and Uniform(Integer). For this section, I decided to use scatter plots to show the differences in distributions and the shape. Scatter plots are typically used to show the relationship between two variables (this translates to correlations in stats).
+![](images/usefulcharts_part1c.png?raw=true)
 
 **(d)- 4pts:** Generate random numbers in two-dimensions for a unit square. Plot the results for the different random number engines. The vertical axis should vary N in increasing order. The horizontal axis should show of the random number engines.
 
@@ -33,28 +34,12 @@ When looking at the means and standard deviations, they stay relatively similar.
 
 **(a) Null State Game transition matrix - 10pts:** done
 
-**(b) Simulate and analyze the results of Null State Game - 10pts:** What is the modal number of moves required by a single player to finish the game? We will be simulating the game two different ways. **(1) Markov Chain**: The game can be analyzed with a row vector, *v* with 101 components, representing the probabilities that the player is on each of the positions. V(0) is (1,0,0,...,0) since we know we start at square 0. v evolves by: <BR>![](images/prob.png?raw=true)<BR>
-For this part (1) use the *Markov project* in the Snake and Ladders starter code.<BR>
-**(2) Monte Carlo**: he will will use a monte carlo process to solve our Discrete Time Markov Chains. Here (2) use the DTMC project, and utilize the DTMC method similar to what we did in class. <BR><BR>Produce graphs to analyze the results and show how the game evolves over time for both methods. Plot useful statistics of the results such as percentage chance of finishing the game in n-moves, cumulative probability of finishing the game in n-moves, and other ways to convey useful information of the results.
+**(b) Simulate and analyze the results of Null State Game - 10pts:**
 
-**(c) Simulate and analyze the results of Snakes and Ladders -10pts:**  Construct a new transition matrix based on the table:
+**(1) Markov Chain**: <BR>![](images/prob.png?raw=true)<BR>
 
+**(2) Monte Carlo**:
 
-Ladders From  | Ladders To | |  Snakes From  | Snakes To 
--------- | -------- | ------------- | -------- | -------- 
-3|19| |11|7
-15|37| |18|13
-22|42| |28|12
-25|64| |36|34
-41|73| |77|16
-53|74| |47|26
-63|86| |83|39
-76|91| |92|75
-84|98| |99|70
-
-
-
-Run the same simulation and analyze your results similar to part (b) for the proper game of *Snakes and Ladders* for both methods. How often are the snakes and ladders used, how do the probability of finishing change, etc? What is the maximum and expected amount of moves for the game? Use charts and graphs to illustrate these points.
 **(d) Think - 0pts:** If these games are built entirely on chance, do they require any strategy? Is it really a *game*, would you rather play games of chance or games of strategy?
 
 
@@ -63,19 +48,22 @@ Run the same simulation and analyze your results similar to part (b) for the pro
 **(a) - 4pts:** done
 **(b) - 4pts:** done
 **(c) - 3pts:** done
-**(d) - 4pts:** Write code to call the functions to output and generate data from the airport senario. Plot and analyze the useful statistics/results in the program of your choice.  (Hint -  basically call  *.output();* on the MM1_Queue objects you create. Hint2 - two other use functions are *get_current_time()* and  *plot_results_output()* call intially on your intial MM1_Queue object.)
+**(d) - 4pts:** I used histograms to compare the expected and observed values. We can see that most of the observe values are greater than expected for both the checkin and security gates.
+![](images/usefulcharts_checkin.png?raw=true)
+![](images/usefulcharts_security.png?raw=true)
+
 **(e) - 15pts:** The following image shows my initial queue model and animation.
-![](images/logicmodel.png?raw=true)
-![](images/logicmodelanimation.png?raw=true)
+![](images/logicmodel.PNG?raw=true)
+![](images/logicmodelanimation.PNG?raw=true)
 
 ##Part 4 - Implementing Extra Features (10 pts)
 * **(10 Points)** - Add a 2D visualization to AnyLogic for Part 3.
 ![](images/2Dmodel.png?raw=true)
-![](images/2Dmodelanimation.png?raw=true)
+![](images/2Dmodelanimation.PNG?raw=true)
 
 
 
 ##Extra Features (Extra Credit - 25pts)
 * **(10 Points)** - Add a 3D visualization to AnyLogic for Part 3.
-![](images/3Dmodelanimation.png?raw=true)
-![](images/3Dmodelanimation2.png?raw=true)
+![](images/3Dmodelanimation.PNG?raw=true)
+![](images/3Dmodelanimation2.PNG?raw=true)

@@ -127,14 +127,15 @@ int main(int argc, char* argv[])
 	Security2.plot_results_output();
 	Security3.get_current_time();
 	Security3.plot_results_output();
-	Boarding.get_current_time();
-	Boarding.plot_results_output();
+	//Boarding.get_current_time();
+	//Boarding.plot_results_output();
 
    Checkin.output(); cout << "Checkin" << endl;
    Security1.output(); cout << "Security1" << endl;
    Security2.output(); cout << "Security2" << endl;
    Security3.output(); cout << "Security3" << endl;
-   Boarding.output(); cout << "Boarding" << endl;
+   //Boarding.output(); cout << "Boarding" << endl;
+   exit(1);
 
    //**************************************************************************
 
