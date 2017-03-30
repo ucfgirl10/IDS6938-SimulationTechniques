@@ -74,3 +74,9 @@ Unit circles for Part E
 * **(10 Points)** - Add a 3D visualization to AnyLogic for Part 3.
 ![](images/3Dmodelanimation.PNG?raw=true)
 ![](images/3Dmodelanimation2.PNG?raw=true)
+
+
+##REFERENCES
+I used the following websites for Part 1 of the HW:
+msdn.microsoft.com/en-us/library/4hwaceh6.aspx
+
