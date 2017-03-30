@@ -24,11 +24,18 @@ When looking at the means and standard deviations, they stay relatively similar.
 **(c) - 3pts:** I selected the Mersenne Twister Generator Engine and the following five distributions: Normal, Poisson, Binomial, Uniform (Real), and Uniform(Integer). For this section, I decided to use scatter plots to show the differences in distributions and the shape. Scatter plots are typically used to show the relationship between two variables (this translates to correlations in stats).
 ![](images/usefulcharts_part1c.png?raw=true)
 
-**(d)- 4pts:** Generate random numbers in two-dimensions for a unit square. Plot the results for the different random number engines. The vertical axis should vary N in increasing order. The horizontal axis should show of the random number engines.
+**(d)- 4pts:** I fixed my distribution to uniform real and varied my N to output the following samples for the following generators: marsenne, knuth-b, minimal standard, ranlux
+![](images/part1d_unitsquare.png?raw=true)
 
-**(e)- 4pts:** Generate random numbers in two-dimensions for a unit square. Plot the results for the different distributions. The vertical axis should vary N in increasing order. The horizontal axis should show of the random number engines. (See [Random Numbers Webcourse page](https://webcourses.ucf.edu/courses/1246518/pages/random-numbers?module_item_id=10541423) for a rough idea what you should produce.)
+**(e)- 4pts:** I fixed my generator to marsenne and varied my N to output the following samples for the following distributions: Uniform real, uniform integer, normal, poisson, and exponential.
+![](images/part1e_unitsquare.png?raw=true)
 
-**(f)- 4pts:** Repeat parts (d) and (e) with a unit circle.
+**(f)- 4pts:**
+Unit circles for Part D
+![](images/part1f_engine_unitcircle.png?raw=true)
+
+Unit circles for Part E
+![](images/part1f_dist_unitcircle.png?raw=true)
 
 ##Part 2 - Snakes and Ladders (Discrete Event Markov Chains and Monte Carlo Simulations) (30 pts)
 
