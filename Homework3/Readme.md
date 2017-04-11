@@ -3,12 +3,12 @@
 ## IDS6938-Simulation Techniques - [University of Central Florida](http://www.ist.ucf.edu/grad/)
 
 [University of Central Florida](http://www.ist.ucf.edu/grad/)
-This is the framework for homework #3. 
+This is the framework for homework #3.
 
 The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 
 # Introduction
-The goal of this assignment is to enable the behavioral animation of vehicle-like walking agents. 
+The goal of this assignment is to enable the behavioral animation of vehicle-like walking agents.
 
 You will be expected to compose a *final report* which demonstrates your understanding on the material in each section of the assignment. Be visual! - Pictures say a thousand words so you do not have to. Show off your different configurations and really explore the assignment.
 
@@ -66,7 +66,22 @@ Below is an image of my Subway Entrance Example with the appropriate features. Y
 
 **(b) - 20 points**: Create a maze. Generate the pdm, stats, and animations like before. Vary [parameters in your agents](https://help.anylogic.com/index.jsp?topic=/com.xj.anylogic.help/html/_PL/reference/Attributes.html) to give them different behaviors and show the pedistrians change how they navigate the maze.
 
-**(c) - 30 points**: Model and analyze a building (or floor/outdoor space/stadium) on campus. (There is help on piazza how to find rough building plans - we expect something plausible). Create a senario: evacuation, daily office routine, special event, normal egress.... etc., and model and design your own experiment to determine if the building design suits the needs of its users. Start with photographs of your site, describe your site, describe your senario and hypothesis. Then use an agent-based pedistrian simulation to visualize your experiment's results.
+![](images/insertname.png?raw=true)
+
+**(c) - 30 points**: Model and analyze a building on campus.
+The site I chose to model is the UCF Harris Corporation Engineering Center. This building was built in 2007 and is located next to the CREOL building and behind Engineering I and II.
+![](images/UCF_HCEC.png?raw=true)
+With the help of a $3 million donation from the Harris Corporation to the College of Engineering & Computer Science, the Harris Corporation Engineering Center (HCEC) now serves as the home of the Department of Electrical Engineering & Computer Science. The HCEC occupies 75,000 square feet and includes 30 research labs for faculty and graduate students. It also features two specialized research computer-aided virtual environments (CAVEs) for virtual and augmented reality (Taken directly from UCF Campus Maps website).
+![](images/HCEC.png?raw=true)
+This building has four floors **(ADD NUMBER OF STAIRWELLS AND ELEVATORS)**
+
+
+SCENARIO:
+Dr. LaViola's Lab on the second floor has been preparing for a very important demo with their new robotic hand. This demo will be held during one of the largest recruiting fairs held for the Computer Science Department. Over **500** participants will be attending. One of his grad students irresponsibly forgot to prepare the robotic hand the night before the event. Therefore, he texted an undergrad to make sure to set-up the robotic hand in the morning. Little did anyone know, the undergrad would start short circut that would overheat the wires and start a fire. Everyone would be at the keynote speaker's talk, so the fire takes over the labspace and starts to spread throughout the rest of the building. The fire alarm sounds, therefore, the entire building would have to be evacuated mid event.
+
+HYPOTHESIS:
+The building design does not suit the needs of this evacuation and the participants.
+
 
 
 
