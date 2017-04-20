@@ -69,18 +69,24 @@ Below is an image of my Subway Entrance Example with the appropriate features. Y
 ![](images/insertname.png?raw=true)
 
 **(c) - 30 points**: Model and analyze a building on campus.
-The site I chose to model is the UCF Harris Corporation Engineering Center. This building was built in 2007 and is located next to the CREOL building and behind Engineering I and II.
-![](images/UCF_HCEC.png?raw=true)
-With the help of a $3 million donation from the Harris Corporation to the College of Engineering & Computer Science, the Harris Corporation Engineering Center (HCEC) now serves as the home of the Department of Electrical Engineering & Computer Science. The HCEC occupies 75,000 square feet and includes 30 research labs for faculty and graduate students. It also features two specialized research computer-aided virtual environments (CAVEs) for virtual and augmented reality (Taken directly from UCF Campus Maps website).
-![](images/HCEC.png?raw=true)
+The site I chose to model is the UCF Student Union. This building was built in 1997 and is located at the center of the UCF Orlando campus. This facility hosts several events and meetings, as well as serves as a place to study, socialize, and eat for students and members of the UCF community.
+![](images/SU1.png?raw=true)
+Known as the "Heart of Campus," the Union offers over 26,000 square feet of meeting and event space, with the ability to host various campus events, seminars, conferences, banquets, and various other functions. The Student Union makes it remarkably easy to reserve almost any one of our many meeting and event spaces. Simply select the type of reservation you are looking to make and walk through the step-by-step guide to reserving your room of choice. Each year, the Student Union helps facilitate over 26,000 bookings for all members of the UCF community. From helping the Campus Activities Board host a famous actress to assisting a Registered Student Organization solicit members on the south patio, we do it all. In addition to reserving space and helping to facilitate these great events, the Student Union hosts some signature programs throughout the year. (Taken directly from: http://studentunion.ucf.edu/).
+![](images/SU2.png?raw=true)
+
+
 This building has four floors **(ADD NUMBER OF STAIRWELLS AND ELEVATORS)**
+
+![](images/SU3.png?raw=true)
+Designed to meet the ever-changing needs of the UCF community and its supporters, the Pegasus Grand Ballroom is located on the Union’s first floor. Virtually every space of the Pegasus Ballroom has the ability to be multipurpose. It’s nearly 12,000 square foot of meeting space is easily converted into nine separate meeting venues or conference rooms. With such stunning adaptability, Pegasus delivers a unique experience for patrons -- whether they are there for a conference or attending one of the many concerts for which the Pegasus is equipped to deliver the very latest in high quality equipment and sound.  (Taken directly from: http://studentunion.ucf.edu/spaces/meeting)
 
 
 SCENARIO:
-Dr. LaViola's Lab on the second floor has been preparing for a very important demo with their new robotic hand. This demo will be held during one of the largest recruiting fairs held for the Computer Science Department. Over **500** participants will be attending. One of his grad students irresponsibly forgot to prepare the robotic hand the night before the event. Therefore, he texted an undergrad to make sure to set-up the robotic hand in the morning. Little did anyone know, the undergrad would start short circut that would overheat the wires and start a fire. Everyone would be at the keynote speaker's talk, so the fire takes over the labspace and starts to spread throughout the rest of the building. The fire alarm sounds, therefore, the entire building would have to be evacuated mid event.
+Every year, Graduate Studies hosts the Graduate Research Forum during Research Week. This year, over 200 graduate students will be participating. The fire alarm sounds, therefore, the entire building would have to be evacuated mid event.
+![](images/GRF.png?raw=true)
 
 HYPOTHESIS:
-The building design does not suit the needs of this evacuation and the participants.
+The building design suits the needs of this evacuation and the participants.
 
 
 
