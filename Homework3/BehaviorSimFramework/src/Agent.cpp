@@ -314,19 +314,19 @@ vec2 SIMAgent::Seek()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-	vec2 tmp;
+	vec2 tmp; //desired velocity
 	double theta; 
 
-	tmp = goal - GPos;
+	tmp = goal - GPos; //current position to the target
 
 	tmp.Normalize();
-	theta = atan2(tmp[1], tmp[0]);
+	theta = atan2(tmp[1], tmp[0]); //derive new angle
 
-	float Vn = SIMAgent::MaxVelocity;
+	float Vd = SIMAgent::MaxVelocity; //how fast the agent moves
 
 	//return tmp;
 
-	return vec2(cos(theta)* Vn, sin(theta)* Vn);
+	return vec2(cos(theta)* Vd, sin(theta)* Vd); //convert to cartesian coordinates
 }
 
 /*
@@ -343,8 +343,18 @@ vec2 SIMAgent::Flee()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+	double theta;
 
-	return tmp;
+	tmp = goal - GPos;
+
+	tmp.Normalize();
+	theta = atan2(tmp[1], tmp[0]) + M_PI; //add 180 degree to the seek desired velocity angle
+
+	float Vn = SIMAgent::MaxVelocity;
+
+	//return tmp;
+
+	return vec2(cos(theta)* Vn, sin(theta)* Vn);
 }
 
 /*
@@ -363,7 +373,18 @@ vec2 SIMAgent::Arrival()
 	*********************************************/
 	vec2 tmp;
 
-	return tmp;
+	double theta;
+
+	tmp = goal - GPos;
+
+	tmp.Normalize();
+	theta = atan2(tmp[1], tmp[0]);
+
+	float Vn = SIMAgent::MaxVelocity;
+
+	return -vec2(cos(theta)* Vn, sin(theta)* Vn);
+
+	//return tmp;
 }
 
 /*
