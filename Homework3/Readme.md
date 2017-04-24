@@ -5,7 +5,7 @@
 
 The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 
-**WILL BE TAKING 1 LATE DAY** (This should be the last day I have.)
+**WILL BE TAKING 2 LATE DAYS** (My original last day, and the extra day you gave us)
 
 # Part 1: Behaviors
 
@@ -47,19 +47,19 @@ SIMAgent::KNoise,	SIMAgent::KWander, SIMAgent::KAvoid, SIMAgent::TAvoid, SIMAgen
 # Part 2 - Simulating a simple pedestrian flow
 
 
-**(a) - 0 points**: [Anylogic Subway Entrance example]
-Below is an image of my Subway Entrance Example with the appropriate features. You can find the file in my "Anylogic Subway Entrance" folder.
+**(a) - 0 points**: [Anylogic Subway Entrance Tutorial]
+Below is an image of my Subway Entrance Example with the appropriate features: boundaries and wals, pedestrian density map, intensity and traffic statistics, and 2D/3D animations. You can find the file in my "Anylogic Subway Entrance" folder.
 
-![](images/insertname.png?raw=true)
+![](images/subwaymodel.png?raw=true)
 
-**(b) - 20 points**: Create a maze. Generate the pdm, stats, and animations like before. Vary [parameters in your agents](https://help.anylogic.com/index.jsp?topic=/com.xj.anylogic.help/html/_PL/reference/Attributes.html) to give them different behaviors and show the pedistrians change how they navigate the maze.
 
+**(b) - 20 points**: [Create a maze]
 I created a simple maze using an image I found online. For the first run of my maze, I only implemented the walls. However, I did not close off the walls at the entrance and exit. In the image below, you can see that the agents did not go through the maze. This is because they found that the path of least resistance to getting to the finish line is going outside of the maze.
 ![](images/maze1.png?raw=true)
 
-Therefore, to fix this, I had to make sure my walls were completely closed. In doing this, all the agents went directly through the maze to the finish line.
+Therefore, to fix this, I had to make sure my walls were completely closed. I made sure the entrance and exit had walls. In doing this, all the agents went directly through the maze to the finish line.
 ![](images/maze2.png?raw=true)
-
+While getting through the maze on the first try is possible, many of us in real life will stuble across a false path. Therefore, I wanted to simulate this behavior in my maze. I added extra target lines to each false path and set the probabilities of those paths to 0.2. In the next image, you can
 ![](images/maze3.png?raw=true)
 
 **(c) - 30 points**: Model and analyze a building on campus.
