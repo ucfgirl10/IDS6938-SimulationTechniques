@@ -17,22 +17,21 @@ The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 ![](images/initialvalues.png?raw=true)
 
 
-
 **(b) - 20 points: [Implement 6 types of individual behaviors and 5 types of group behaviors.]**
 * Seek
-SCREEN SHOT
+![](images/seek.png?raw=true)
 
 * Flee
-SCREEN SHOT
+![](images/flee.png?raw=true)
 
 * Arrival
-SCREEN SHOT
+![](images/arrival.png?raw=true)
 
 * Departure
-SCREEN SHOT
+![](images/departure.png?raw=true)
 
 * Wander
-SCREEN SHOT
+![](images/wander.png?raw=true)
 
 * Obstacle Avoidance
 SCREEN SHOT
@@ -41,10 +40,10 @@ SCREEN SHOT
 * Seperation
 SCREEN SHOT
 
-* Cohesion 
+* Cohesion
 SCREEN SHOT
 
-* Alignment 
+* Alignment
 SCREEN SHOT
 
 * Flocking

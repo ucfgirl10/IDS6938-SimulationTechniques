@@ -343,17 +343,21 @@ vec2 SIMAgent::Flee()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-	vec2 tmp;
-	
-	tmp = goal - GPos;
+
+	//Exactly same as seek, but feel in opposite direction
+
+	vec2 tmp; //desired velocity
+
+	tmp = goal - GPos; //current position to the target
 
 	tmp.Normalize();
-	thetad = atan2(tmp[1], tmp[0]); //+ M_PI; //add 180 degree to the seek desired velocity angle
-	thetad += M_PI;
-	double Vn = SIMAgent::MaxVelocity;
+	thetad = atan2(tmp[1], tmp[0]); //derive new angle
+	thetad += M_PI;  //add 180 degree to the seek desired velocity angle
 
-	tmp = vec2(cos(thetad)* Vn, sin(thetad)* Vn);
+	vd = SIMAgent::MaxVelocity; //how fast the agent moves
 
+	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd); //convert to cartesian coordinates
+	
 	return tmp;
 }
 
@@ -371,6 +375,9 @@ vec2 SIMAgent::Arrival()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
+
+	//Functions much like seek, but slows down as it approaches target
+
 	vec2 tmp;
 
 	tmp = goal - GPos; // shortest path from current position to the target
@@ -379,7 +386,7 @@ vec2 SIMAgent::Arrival()
 
 	vd = tmp.Length()*KArrival; 
 
-	Truncate(vd, 0, MaxVelocity); // Flocks, Herds, and Schools
+	Truncate(vd, 0, MaxVelocity); // Flocks, Herds, and Schools Reference
 
 	tmp.Normalize();
 
@@ -402,19 +409,25 @@ vec2 SIMAgent::Departure()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
+
+	//functions much like flee, but closer to target the faster it moves away
+
 	vec2 tmp;
 
 	tmp = goal - GPos; // shortest path from current position to the target
 
+	vd = tmp.Length()*KDeparture;
+
+	Truncate(vd, 0, MaxVelocity); // Flocks, Herds, and Schools Reference
 	tmp.Normalize();
+
 	thetad = atan2(tmp[1], tmp[0]);
 	thetad += M_PI;
 
-	vd = tmp.Length()*KDeparture;
-
-	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd);
+	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd); //return to the Cartesian coordinates
 
 	return tmp;
+
 }
 
 /*
@@ -432,7 +445,7 @@ vec2 SIMAgent::Wander()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-	float angle = float(rand() % 360) / 180.0 * M_PI; //pulled from 147 SIMAgent::SIMAgent(float* color, CEnvironment* env)
+	float angle = float(rand() % 360) / 180.0 * M_PI; //Random angle pulled from 147 SIMAgent::SIMAgent(float* color, CEnvironment* env)
 	vd = MaxVelocity; 
 	thetad = angle;
 	tmp = vec2(cos(thetad)*vd*KNoise, sin(thetad)*vd*KNoise)*KWander;
@@ -459,6 +472,8 @@ vec2 SIMAgent::Avoid()
 	*********************************************/
 	vec2 tmp;
 	
+
+
 	return tmp;
 }
 
@@ -553,7 +568,34 @@ vec2 SIMAgent::Leader()
 	*********************************************/
 	vec2 tmp;
 
-	//vec2 tmp = KSeparate*Separation() + KArrival*Arrival();
+	if (GPos == agents[0]->GPos) // Designate Leader-https://github.com/shijingliu/CIS-562-Behavioral-Animation/blob/master/Agent.cpp
+	{
+		return Seek();
+	}
+	else
+	{
+		//Leader X and Y Coordinates
+		vec2 V = vec2(0.0, 0.0);
+		float pX = 0.0;
+		float pY = 0.0;
+		vec2 pV;
+
+		pX = agents[0]->GPos[0];
+		pY = agents[0]->GPos[1];
+		pV = vec2(pX, pY);
+
+		//Seek
+		tmp = pV - GPos;
+		tmp.Normalize();
+		thetad = atan2(tmp[1], tmp[0]);
+		vd = MaxVelocity;
+		return vec2(cos(thetad)*vd, sin(thetad)*vd);
+
+		//Follow one body length behind
+		tmp = agents[0]->GPos - GPos;
+		vec2 s = Separation();
+		vec2 a = Arrival();
+	}
 	return tmp;
 
 
