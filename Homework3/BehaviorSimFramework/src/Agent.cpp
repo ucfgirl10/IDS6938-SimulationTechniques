@@ -227,19 +227,19 @@ void SIMAgent::InitValues()
 	SIMAgent::KNoise, SIMAgent::KWander, SIMAgent::KAvoid, SIMAgent::TAvoid, SIMAgent::RNeighborhood,
 	SIMAgent::KSeparate, SIMAgent::KAlign, SIMAgent::KCohesion.
 	*********************************************/
-	Kv0 = 0.0;
-	Kp1 = 0.0;
-	Kv1 = 0.0;
-	KArrival = 0.0;
-	KDeparture = 0.0;
+	Kv0 = 10.0;
+	Kp1 = -100.0;
+	Kv1 = 30.0;
+	KArrival = 0.50;
+	KDeparture = 1.0;
 	KNoise = 0.0;
-	KWander = 0.0;
+	KWander = 5.0;
 	KAvoid = 0.0;
-	TAvoid = 0.0;
-	RNeighborhood = 0.0;
-	KSeparate = 0.0;
-	KAlign = 0.0;
-	KCohesion = 0.0;
+	TAvoid = 20.0;
+	RNeighborhood = 500.0;
+	KSeparate = 500.0;
+	KAlign = 15.0;
+	KCohesion = 05.0;
 }
 
 /*
@@ -268,10 +268,10 @@ void SIMAgent::FindDeriv()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-	deriv[0] = input[0] / Mass;
-	deriv[1] = input[1] / Inertia;
-	deriv[2] = state[2];
-	deriv[3] = state[3];
+	deriv[0] = state[2]; //the velocity of the agent in local body coordinates
+	deriv[1] = state[3]; //the angular velocity of the agent in world coordinates
+	deriv[2] = input[0] / Mass; //the force in local body coordinates divided by the mass
+	deriv[3] = input[1] / Inertia; //torque in local body coordinates divided by inertia
 }
 
 /*
@@ -315,18 +315,19 @@ vec2 SIMAgent::Seek()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp; //desired velocity
-	double theta; 
-
+	
 	tmp = goal - GPos; //current position to the target
 
-	tmp.Normalize();
-	theta = atan2(tmp[1], tmp[0]); //derive new angle
+	tmp.Normalize(); 
+	thetad = atan2(tmp[1], tmp[0]); //derive new angle
 
-	float Vd = SIMAgent::MaxVelocity; //how fast the agent moves
+	double Vd = SIMAgent::MaxVelocity; //how fast the agent moves
 
+	return vec2(cos(thetad)* Vd, sin(thetad)* Vd); //convert to cartesian coordinates
+	
 	//return tmp;
 
-	return vec2(cos(theta)* Vd, sin(theta)* Vd); //convert to cartesian coordinates
+	
 }
 
 /*
@@ -343,18 +344,17 @@ vec2 SIMAgent::Flee()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-	double theta;
-
+	
 	tmp = goal - GPos;
 
 	tmp.Normalize();
-	theta = atan2(tmp[1], tmp[0]) + M_PI; //add 180 degree to the seek desired velocity angle
+	thetad = atan2(tmp[1], tmp[0]); //+ M_PI; //add 180 degree to the seek desired velocity angle
+	thetad += M_PI;
+	double Vn = SIMAgent::MaxVelocity;
 
-	float Vn = SIMAgent::MaxVelocity;
+	return vec2(cos(thetad)* Vn, sin(thetad)* Vn);
 
 	//return tmp;
-
-	return vec2(cos(theta)* Vn, sin(theta)* Vn);
 }
 
 /*
@@ -373,16 +373,17 @@ vec2 SIMAgent::Arrival()
 	*********************************************/
 	vec2 tmp;
 
-	double theta;
+	tmp = goal - GPos; // shortest path from current position to the target
+		
+	thetad = atan2(tmp[1], tmp[0]);
 
-	tmp = goal - GPos;
+	vd = tmp.Length()*KArrival; 
+
+	Truncate(vd, 0, MaxVelocity); // Flocks, Herds, and Schools
 
 	tmp.Normalize();
-	theta = atan2(tmp[1], tmp[0]);
 
-	float Vn = SIMAgent::MaxVelocity;
-
-	return -vec2(cos(theta)* Vn, sin(theta)* Vn);
+	return vec2(cos(thetad)* vd, sin(thetad)* vd);
 
 	//return tmp;
 }
@@ -401,9 +402,19 @@ vec2 SIMAgent::Departure()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-	vec2 tmp;
+	vec2 Vd;
 
-	return tmp;
+	Vd = goal - GPos; // shortest path from current position to the target
+
+	Vd.Normalize();
+	thetad = atan2(Vd[1], Vd[0]);
+	thetad += M_PI;
+
+	double vd = Vd.Length()*KDeparture;
+
+	return vec2(cos(thetad)* vd, sin(thetad)* vd);
+
+	//return tmp;
 }
 
 /*
@@ -421,7 +432,11 @@ vec2 SIMAgent::Wander()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-
+	float angle = float(rand() % 360) / 180.0 * M_PI; //pulled from 147 SIMAgent::SIMAgent(float* color, CEnvironment* env)
+	vd = MaxVelocity; 
+	thetad = angle;
+	tmp = vec2(cos(thetad)*vd*KNoise, sin(thetad)*vd*KNoise)*KWander;
+	
 	return tmp;
 }
 
@@ -516,6 +531,10 @@ vec2 SIMAgent::Flocking()
 	*********************************************/
 	vec2 tmp;
 
+	vec2 tmp = KSeparate*Separation() + KAlign*Alignment() + KCohesion*Cohesion();
+	return tmp;
+
+
 	return tmp;
 }
 
@@ -533,6 +552,9 @@ vec2 SIMAgent::Leader()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+
+	vec2 tmp = KSeparate*Separation() + KArrival*Arrival();
+	return tmp;
 
 	return tmp;
 }
