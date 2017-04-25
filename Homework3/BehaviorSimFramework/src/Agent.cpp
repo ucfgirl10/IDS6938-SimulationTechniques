@@ -321,11 +321,11 @@ vec2 SIMAgent::Seek()
 	tmp.Normalize(); 
 	thetad = atan2(tmp[1], tmp[0]); //derive new angle
 
-	double Vd = SIMAgent::MaxVelocity; //how fast the agent moves
+	vd = SIMAgent::MaxVelocity; //how fast the agent moves
 
-	return vec2(cos(thetad)* Vd, sin(thetad)* Vd); //convert to cartesian coordinates
+	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd); //convert to cartesian coordinates
 	
-	//return tmp;
+	return tmp;
 
 	
 }
@@ -352,9 +352,9 @@ vec2 SIMAgent::Flee()
 	thetad += M_PI;
 	double Vn = SIMAgent::MaxVelocity;
 
-	return vec2(cos(thetad)* Vn, sin(thetad)* Vn);
+	tmp = vec2(cos(thetad)* Vn, sin(thetad)* Vn);
 
-	//return tmp;
+	return tmp;
 }
 
 /*
@@ -383,9 +383,9 @@ vec2 SIMAgent::Arrival()
 
 	tmp.Normalize();
 
-	return vec2(cos(thetad)* vd, sin(thetad)* vd);
+	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd);
 
-	//return tmp;
+	return tmp;
 }
 
 /*
@@ -402,19 +402,19 @@ vec2 SIMAgent::Departure()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-	vec2 Vd;
+	vec2 tmp;
 
-	Vd = goal - GPos; // shortest path from current position to the target
+	tmp = goal - GPos; // shortest path from current position to the target
 
-	Vd.Normalize();
-	thetad = atan2(Vd[1], Vd[0]);
+	tmp.Normalize();
+	thetad = atan2(tmp[1], tmp[0]);
 	thetad += M_PI;
 
-	double vd = Vd.Length()*KDeparture;
+	vd = tmp.Length()*KDeparture;
 
-	return vec2(cos(thetad)* vd, sin(thetad)* vd);
+	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd);
 
-	//return tmp;
+	return tmp;
 }
 
 /*
@@ -531,11 +531,11 @@ vec2 SIMAgent::Flocking()
 	*********************************************/
 	vec2 tmp;
 
-	vec2 tmp = KSeparate*Separation() + KAlign*Alignment() + KCohesion*Cohesion();
+	//vec2 tmp = KSeparate*Separation() + KAlign*Alignment() + KCohesion*Cohesion();
 	return tmp;
 
 
-	return tmp;
+	
 }
 
 /*
@@ -553,8 +553,8 @@ vec2 SIMAgent::Leader()
 	*********************************************/
 	vec2 tmp;
 
-	vec2 tmp = KSeparate*Separation() + KArrival*Arrival();
+	//vec2 tmp = KSeparate*Separation() + KArrival*Arrival();
 	return tmp;
 
-	return tmp;
+
 }
