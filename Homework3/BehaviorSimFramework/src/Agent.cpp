@@ -470,12 +470,12 @@ vec2 SIMAgent::Avoid()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-	vec2 tmp;
+		vec2 tmp;
 	
 
+		return tmp;
 
-	return tmp;
-}
+	}
 
 /*
 *	Separation behavior
@@ -492,7 +492,37 @@ vec2 SIMAgent::Separation()
 	*********************************************/
 	vec2 tmp;
 
-	return tmp;
+	vec2 V = vec2(0.0, 0.0);//start position
+	float pX = 0.0; //start X
+	float pY = 0.0; //start y
+
+	vec2 pV;
+	vec2 VSep;
+
+	for (int i = 0; i < agents.size(); i++) //call agent in the system
+	{
+		pX = GPos[0] - agents[i]->GPos[0];
+		pY = GPos[1] - agents[i]->GPos[1];
+		pV = vec2(pX, pY);
+
+		if (((pX != 0.0) || (pY != 0.0)) && (pV.Length() < RNeighborhood))
+		{
+			V[0] += (pX / (pV.Length() * pV.Length()));
+			V[1] += (pY / (pV.Length() * pV.Length()));
+		}
+	}
+
+	//Repulsion force against other characters
+	//	agent position-character position
+	//	normalize
+	//	then 1/r (or r^2)-KSeparate?		
+	VSep = KSeparate * V;
+	thetad = atan2(VSep[1], VSep[0]);
+	vd = VSep.Length();
+	Truncate(vd, 0, MaxVelocity); //set min and max valocity
+	return vec2(cos(thetad)*vd, sin(thetad)*vd); //retrived coordinates
+	
+	//return tmp;
 }
 
 /*
@@ -568,34 +598,6 @@ vec2 SIMAgent::Leader()
 	*********************************************/
 	vec2 tmp;
 
-	if (GPos == agents[0]->GPos) // Designate Leader-https://github.com/shijingliu/CIS-562-Behavioral-Animation/blob/master/Agent.cpp
-	{
-		return Seek();
-	}
-	else
-	{
-		//Leader X and Y Coordinates
-		vec2 V = vec2(0.0, 0.0);
-		float pX = 0.0;
-		float pY = 0.0;
-		vec2 pV;
-
-		pX = agents[0]->GPos[0];
-		pY = agents[0]->GPos[1];
-		pV = vec2(pX, pY);
-
-		//Seek
-		tmp = pV - GPos;
-		tmp.Normalize();
-		thetad = atan2(tmp[1], tmp[0]);
-		vd = MaxVelocity;
-		return vec2(cos(thetad)*vd, sin(thetad)*vd);
-
-		//Follow one body length behind
-		tmp = agents[0]->GPos - GPos;
-		vec2 s = Separation();
-		vec2 a = Arrival();
-	}
 	return tmp;
 
 

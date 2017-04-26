@@ -67,15 +67,19 @@ I created a simple maze using an image I found online. For the first run of my m
 
 Therefore, to fix this, I had to make sure my walls were completely closed. I made sure the entrance and exit had walls. In doing this, all the agents went directly through the maze to the finish line.
 ![](images/maze2.png?raw=true)
-While getting through the maze on the first try is possible, many of us in real life will stuble across a false path. Therefore, I wanted to simulate this behavior in my maze. I added extra target lines to each false path and set the probabilities of those paths to 0.2. In the next image, you can see the results of having an arrival rate of 1000 agents per hour.
+While getting through the maze on the first try is possible, many of us in real life will stumble across a false path. Therefore, I wanted to simulate this behavior in my maze. I added 4 extra target lines to each false path and set the probabilities of those paths to 0.2. In the next image, you can see the results of having an arrival rate of 1000 agents per hour.
 ![](images/maze3.png?raw=true)
+The following images display my 3D model at closer angles.
 ![](images/maze3D.png?raw=true)
 I was curious to see how it would change if I lowered the arrival rate to 30 per hour. The following image displays the results. We can see in the density map and statistics that the numbers lowered significantly. In this run, the density stayed mostly between 0 and 0.25, while in the original run it reached higher than 1.00.
 ![](images/maze4.png?raw=true)
 
-I have created a video to show the changes in density. 
+I have created a video to show more clearly in real time the minor changes in density of this last run.
 <a href="https://youtu.be/FEZOmdjNmVE" target="_blank"><img src="http://img.youtube.com/vi/FEZOmdjNmVE/0.jpg"
 alt="Video2" width="240" height="180" border="10" /></a>
+
+Finally, to make my maze a bit more realistic, I decided to add extra target lines and probabilities. The agents have a 0.5 chance of taking the first true path and a 0.5 chance of taking the first false path (to end up at the first dead end). Then, the agents have a 0.5 chance of taking the next true path or 0.5 chance of taking the next false path (the will have a 0.5 chance to end up at the 2nd dead end or 0.5 to end up at the 3rd dead end). The agents will finally have a 0.5 chance to end up at the last dead end before reaching the exit. The images and video below demonstrate this logic with an arrival rate of 1000 per hour.
+![](images/maze5.png?raw=true)
 
 
 
@@ -98,11 +102,13 @@ Every year, Graduate Studies hosts the Graduate Research Forum during Research W
 ![](images/GRF.png?raw=true)
 
 HYPOTHESIS:
-Though there are hundreds of faculty, staff, and students in the building, I believe the building design suits the needs of this evacuation and the participants.
+Though there are hundreds of faculty, staff, and students in the building, I believe the building design suits the needs of this evacuation and the participants. (Although, using my assumptions and edition of the evacuation plan -- see below-- may negate this)
 
 EXPERIMENT:
 To visualize this experiment, I will use the floor plan for the first floor:
 ![](images/SU_floor1.png?raw=true)
+I could not find the official evacuation routes of the student union, therefore I made my own evacuation plan based on the closest exits to the agents. For example, if the agents were in the ballroom, they would have to take either exit 1 or 3. If the agents were in the atrium, they would have to take exit 2. Though the student union has other doors available, in my model I am assuming these would be the official doors for evacuation and the only possible routes.
+
 
 
 # REFRENCES
