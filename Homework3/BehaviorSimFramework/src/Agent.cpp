@@ -382,13 +382,13 @@ vec2 SIMAgent::Arrival()
 
 	tmp = goal - GPos; // shortest path from current position to the target
 		
-	thetad = atan2(tmp[1], tmp[0]);
-
 	vd = tmp.Length()*KArrival; 
 
 	Truncate(vd, 0, MaxVelocity); // Flocks, Herds, and Schools Reference
 
 	tmp.Normalize();
+
+	thetad = atan2(tmp[1], tmp[0]);
 
 	tmp = vec2(cos(thetad)* vd, sin(thetad)* vd);
 
@@ -472,7 +472,6 @@ vec2 SIMAgent::Avoid()
 	*********************************************/
 		vec2 tmp;
 	
-
 		return tmp;
 
 	}
@@ -491,38 +490,8 @@ vec2 SIMAgent::Separation()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-
-	vec2 V = vec2(0.0, 0.0);//start position
-	float pX = 0.0; //start X
-	float pY = 0.0; //start y
-
-	vec2 pV;
-	vec2 VSep;
-
-	for (int i = 0; i < agents.size(); i++) //call agent in the system
-	{
-		pX = GPos[0] - agents[i]->GPos[0];
-		pY = GPos[1] - agents[i]->GPos[1];
-		pV = vec2(pX, pY);
-
-		if (((pX != 0.0) || (pY != 0.0)) && (pV.Length() < RNeighborhood))
-		{
-			V[0] += (pX / (pV.Length() * pV.Length()));
-			V[1] += (pY / (pV.Length() * pV.Length()));
-		}
-	}
-
-	//Repulsion force against other characters
-	//	agent position-character position
-	//	normalize
-	//	then 1/r (or r^2)-KSeparate?		
-	VSep = KSeparate * V;
-	thetad = atan2(VSep[1], VSep[0]);
-	vd = VSep.Length();
-	Truncate(vd, 0, MaxVelocity); //set min and max valocity
-	return vec2(cos(thetad)*vd, sin(thetad)*vd); //retrived coordinates
 	
-	//return tmp;
+	return tmp;
 }
 
 /*
@@ -557,8 +526,7 @@ vec2 SIMAgent::Cohesion()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-
-
+	
 	return tmp;
 }
 
@@ -576,7 +544,6 @@ vec2 SIMAgent::Flocking()
 	*********************************************/
 	vec2 tmp;
 
-	//vec2 tmp = KSeparate*Separation() + KAlign*Alignment() + KCohesion*Cohesion();
 	return tmp;
 
 
