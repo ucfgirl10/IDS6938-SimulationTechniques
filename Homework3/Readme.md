@@ -11,27 +11,27 @@ The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 
 **(a) - 10 points : [Compute derivative vector and implement initial values]**
 * Derivative Vector (Based on Piazza post 4/24/17)
-![](images/findderiv.png?raw=true)
+![](images/findderiv.PNG?raw=true)
 
 * Initial Values
-![](images/initialvalues.png?raw=true)
+![](images/initialvalues.PNG?raw=true)
 
 
 **(b) - 20 points: [Implement 6 types of individual behaviors and 5 types of group behaviors.]**
 * Seek
-![](images/seek.png?raw=true)
+![](images/seek.PNG?raw=true)
 
 * Flee
-![](images/flee.png?raw=true)
+![](images/flee.PNG?raw=true)
 
 * Arrival
-![](images/arrival.png?raw=true)
+![](images/arrival.PNG?raw=true)
 
 * Departure
-![](images/departure.png?raw=true)
+![](images/departure.PNG?raw=true)
 
 * Wander
-![](images/wander.png?raw=true)
+![](images/wander.PNG?raw=true)
 
 * Obstacle Avoidance
 SCREEN SHOT
@@ -58,28 +58,28 @@ SCREEN SHOT
 **(a) - 0 points: [Anylogic Subway Entrance Tutorial]**
 Below is an image of my Subway Entrance Example with the appropriate features: boundaries and wals, pedestrian density map, intensity and traffic statistics, and 2D/3D animations. You can find the file in my "Anylogic Subway Entrance" folder.
 
-![](images/subwaymodel.png?raw=true)
+![](images/subwaymodel.PNG?raw=true)
 
 
 **(b) - 20 points: [Create a maze]**
 I created a simple maze using an image I found online. For the first run of my maze, I only implemented the walls. However, I did not close off the walls at the entrance and exit. In the image below, you can see that the agents did not go through the maze. This is because they found that the path of least resistance to getting to the finish line is going outside of the maze.
-![](images/maze1.png?raw=true)
+![](images/maze1.PNG?raw=true)
 
 Therefore, to fix this, I had to make sure my walls were completely closed. I made sure the entrance and exit had walls. In doing this, all the agents went directly through the maze to the finish line.
-![](images/maze2.png?raw=true)
+![](images/maze2.PNG?raw=true)
 While getting through the maze on the first try is possible, many of us in real life will stumble across a false path. Therefore, I wanted to simulate this behavior in my maze. I added 4 extra target lines to each false path and set the probabilities of those paths to 0.2. In the next image, you can see the results of having an arrival rate of 1000 agents per hour.
-![](images/maze3.png?raw=true)
+![](images/maze3.PNG?raw=true)
 The following images display my 3D model at closer angles.
-![](images/maze3D.png?raw=true)
+![](images/maze3D.PNG?raw=true)
 I was curious to see how it would change if I lowered the arrival rate to 30 per hour. The following image displays the results. We can see in the density map and statistics that the numbers lowered significantly. In this run, the density stayed mostly between 0 and 0.25, while in the original run it reached higher than 1.00.
-![](images/maze4.png?raw=true)
+![](images/maze4.PNG?raw=true)
 
 I have created a video to show more clearly in real time the minor changes in density of this last run.
 <a href="https://youtu.be/FEZOmdjNmVE" target="_blank"><img src="http://img.youtube.com/vi/FEZOmdjNmVE/0.jpg"
 alt="Video2" width="240" height="180" border="10" /></a>
 
 Finally, to make my maze a bit more realistic, I decided to add extra target lines and probabilities. The agents have a 0.5 chance of taking the first true path and a 0.5 chance of taking the first false path (to end up at the first dead end). Then, the agents have a 0.5 chance of taking the next true path or 0.5 chance of taking the next false path (the will have a 0.5 chance to end up at the 2nd dead end or 0.5 to end up at the 3rd dead end). The agents will finally have a 0.5 chance to end up at the last dead end before reaching the exit. The images and video below demonstrate this logic with an arrival rate of 1000 per hour.
-![](images/maze5.png?raw=true)
+![](images/maze5.PNG?raw=true)
 
 
 
