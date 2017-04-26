@@ -11,26 +11,33 @@ The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 
 **(a) - 10 points : [Compute derivative vector and implement initial values]**
 * Derivative Vector (Based on Piazza post 4/24/17)
+
 ![](images/findderiv.PNG?raw=true)
 
 * Initial Values
+
 ![](images/initialvalues.PNG?raw=true)
 
 
 **(b) - 20 points: [Implement 6 types of individual behaviors and 5 types of group behaviors.]**
 * Seek
+
 ![](images/seek.PNG?raw=true)
 
 * Flee
+
 ![](images/flee.PNG?raw=true)
 
 * Arrival
+
 ![](images/arrival.PNG?raw=true)
 
 * Departure
+
 ![](images/departure.PNG?raw=true)
 
 * Wander
+
 ![](images/wander.PNG?raw=true)
 
 * Obstacle Avoidance
