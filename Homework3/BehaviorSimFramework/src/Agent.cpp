@@ -470,11 +470,31 @@ vec2 SIMAgent::Avoid()
 	/*********************************************
 	// TODO: Add code here
 	*********************************************/
-		vec2 tmp;
+	vec2 tmp;
+	vec2 ahead1;
+	vec2 ahead2;
 	
-		return tmp;
+	for (int i = 0; i < env->obstaclesNum; i++) //number of obstacles
+	{
+		tmp[0] = env->obstacles[i][0]; //vectors
+		tmp[1] = env->obstacles[i][1];//vectors
 
-	}
+		ahead1 = GPos + v0.Normalize() * KAvoid;  //check for collision
+		ahead2 = GPos + v0.Normalize() * KAvoid * 0.5; //check for collision
+
+		float dist1 = (tmp - ahead1).Length();
+		float dist2 = (tmp - ahead2).Length();
+				
+		if (dist1 <= env->obstacles[i][2] || dist2 <= env->obstacles[i][2])
+		{
+			thetad = thetad + TAvoid;
+			vd = SIMAgent::MaxVelocity;
+			ClampAngle(thetad);
+			return vec2(cos(thetad)*vd, sin(thetad)*vd); //return a vec2 that represents the goal velocity
+		}
+		return tmp;
+		}
+}
 
 /*
 *	Separation behavior
@@ -490,6 +510,9 @@ vec2 SIMAgent::Separation()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+
+
+
 	
 	return tmp;
 }
@@ -544,6 +567,8 @@ vec2 SIMAgent::Flocking()
 	*********************************************/
 	vec2 tmp;
 
+
+
 	return tmp;
 
 
@@ -564,6 +589,8 @@ vec2 SIMAgent::Leader()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+
+	
 
 	return tmp;
 

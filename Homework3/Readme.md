@@ -19,7 +19,7 @@ The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 ![](images/initialvalues.PNG?raw=true)
 
 
-**(b) - 20 points: [Implement 6 types of individual behaviors and 5 types of group behaviors.]**
+**(b) - 20 points: [Implement individual behaviors]**
 * Seek
 
 ![](images/seek.PNG?raw=true)
@@ -33,12 +33,14 @@ The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 ![](images/flee2.PNG?raw=true)
 
 * Arrival
+According to webcourses, arrival and departure are very similar to seek and flee. The difference is that in arrival "the agent attempts to steer towards a specified target and slows down when it gets close." I do not see this difference clearly, therefore I am unsure whether the code is right.
 
 ![](images/arrival.PNG?raw=true)
 
 ![](images/arrival2.PNG?raw=true)
 
 * Departure
+According to webcourses, departure is different from flee, because the agent steers away and slows down after a certain point. I do not see this difference clearly, therefore I am unsure whether the code is right.
 
 ![](images/departure.PNG?raw=true)
 
@@ -51,23 +53,31 @@ The assignment is due: **Monday, April  24 at 11:59PM (EST)**
 ![](images/wander2.PNG?raw=true)
 
 * Obstacle Avoidance
-SCREEN SHOT
+I tried implementing avoidance, but had no luck. Below is the code I was working with. It is definitely incomplete since the agents don't do anything except walk through. I tried using the 3 different approaches from webcourses, your notes in the code, and the following webpage suggested by Alex on Piazza: https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-collision-avoidance--gamedev-7777
+
+![](images/avoid.PNG?raw=true)
+
+[I did not include a screenshot because it was not working.]
+
+The following video shows all of the individual behaviors implemented.
+
+<a href="https://youtu.be/9fttzFAAryE" target="_blank"><img src="http://img.youtube.com/vi/9fttzFAAryE/0.jpg"
+alt="Video2" width="240" height="180" border="10" /></a>
+
 
 **(c) - 20 points: [Implement group behaviors]**
+I was not able to implement the 5 group behaviors due to 1) time, and 2) I did not have enough resources. According to webcourses I would have had to find separation, cohesion, and alignment first to then implement flocking and leader following.
+
 * Seperation
-SCREEN SHOT
 
 * Cohesion
-SCREEN SHOT
 
 * Alignment
-SCREEN SHOT
 
 * Flocking
-SCREEN SHOT
 
 * Leader Following
-SCREEN SHOT
+
 
 # Part 2 - Simulating a simple pedestrian flow
 
@@ -104,13 +114,12 @@ I have created a video to show more clearly in real time the minor changes in de
 <a href="https://youtu.be/FEZOmdjNmVE" target="_blank"><img src="http://img.youtube.com/vi/FEZOmdjNmVE/0.jpg"
 alt="Video2" width="240" height="180" border="10" /></a>
 
-Finally, to make my maze a bit more realistic, I decided to add extra target lines and probabilities. The agents have a 0.5 chance of taking the first true path and a 0.5 chance of taking the first false path (to end up at the first dead end). Then, the agents have a 0.5 chance of taking the next true path or 0.5 chance of taking the next false path (the will have a 0.5 chance to end up at the 2nd dead end or 0.5 to end up at the 3rd dead end). The agents will finally have a 0.5 chance to end up at the last dead end before reaching the exit. The images and video below demonstrate this logic with an arrival rate of 1000 per hour.
+Finally, to make my maze a bit more realistic, I decided to add extra target lines and probabilities. In this run, the probabilities are set in each path. The agents have a 0.5 chance of taking the first true path and a 0.5 chance of taking the first false path (to end up at the first dead end). Then, the agents will move on and have a 0.5 chance of taking the next true path or 0.5 chance of taking the next false path (taking the false path will lead them to having a 0.5 chance to end up at the 2nd dead end or 0.5 to end up at the 3rd dead end). The agents will finally have a 0.5 chance to end up at the last dead end before reaching the exit. The images and video below demonstrate this logic with an arrival rate of 1000 per hour.
 
 ![](images/maze5.PNG?raw=true)
 
 <a href="https://youtu.be/HLgM7ynJ0h0" target="_blank"><img src="http://img.youtube.com/vi/HLgM7ynJ0h0/0.jpg"
 alt="Video2" width="240" height="180" border="10" /></a>
-
 
 
 **(c) - 30 points: [Model and analyze a building on campus.]**
@@ -150,7 +159,7 @@ I could not find the official evacuation routes of the student union, therefore 
 
 ![](images/SUmodel.png?raw=true)
 
-In my model, I included 210 agents. They all start at the graduate forum event in the ballroom. After a minute of being in the ballroom (pedWait), they exit the ballroom using one of the three doors (probability of using the paths for door 1 and 3 were set to .35 since they are the closest to the exit they are the most probable to be used. The probabilities of using either path for door 2 were set to .15).
+In my model, I included 210 agents. They all start at the graduate forum event in the ballroom. After a minute of being in the ballroom (pedWait), the alarm sounds and they begin to exit the ballroom using one of the three doors (probability of using the paths for door 1 and 3 were set to .35 since they are the closest to the exit they are the most probable to be used. The probabilities of using either path for door 2 were set to .15).
 
 ![](images/SUmodel1.png?raw=true)
 
@@ -162,6 +171,9 @@ To follow is a short clip of my model in motion.
 
 <a href="https://youtu.be/WOrEn-20qzU" target="_blank"><img src="http://img.youtube.com/vi/WOrEn-20qzU/0.jpg"
 alt="Video2" width="240" height="180" border="10" /></a>
+
+CONCLUSION:
+Though the model is not entirely realistic, I believe if there were only those two exits as depicted in my model, the building design would not be suitable. In the videos and images you can see that there were hold ups (very high density) in getting out of the ballroom. In an emergency situation, we wouldn't want too much delays.
 
 # REFRENCES
 For this assignment, I studied with Olivia Newton, Ashley Reardon, and Rebecca Leis.
