@@ -91,23 +91,23 @@ Below is an image of my Subway Entrance Example with the appropriate features: b
 **(b) - 20 points: [Create a maze]**
 I created a simple maze using an image I found online. For the first run of my maze, I only implemented the walls. However, I did not close off the walls at the entrance and exit. In the image below, you can see that the agents did not go through the maze. This is because they found that the path of least resistance to getting to the finish line is going outside of the maze.
 
-![](images/maze1.PNG?raw=true)
+![](images/Maze1.PNG?raw=true)
 
 Therefore, to fix this, I had to make sure my walls were completely closed. I made sure the entrance and exit had walls. In doing this, all the agents went directly through the maze to the finish line.
 
-![](images/maze2.PNG?raw=true)
+![](images/Maze2.PNG?raw=true)
 
 While getting through the maze on the first try is possible, many of us in real life will stumble across a false path. Therefore, I wanted to simulate this behavior in my maze. I added 4 extra target lines to each false path and set the probabilities of those paths to 0.2. In the next image, you can see the results of having an arrival rate of 1000 agents per hour.
 
-![](images/maze3.PNG?raw=true)
+![](images/Maze3.PNG?raw=true)
 
 The following images display my 3D model at closer angles.
 
-![](images/maze3D.PNG?raw=true)
+![](images/Maze3D.PNG?raw=true)
 
 I was curious to see how it would change if I lowered the arrival rate to 30 per hour. The following image displays the results. We can see in the density map and statistics that the numbers lowered significantly. In this run, the density stayed mostly between 0 and 0.25, while in the original run it reached higher than 1.00.
 
-![](images/maze4.PNG?raw=true)
+![](images/Maze4.PNG?raw=true)
 
 I have created a video to show more clearly in real time the minor changes in density of this last run.
 
@@ -116,7 +116,7 @@ alt="Video2" width="240" height="180" border="10" /></a>
 
 Finally, to make my maze a bit more realistic, I decided to add extra target lines and probabilities. In this run, the probabilities are set in each path. The agents have a 0.5 chance of taking the first true path and a 0.5 chance of taking the first false path (to end up at the first dead end). Then, the agents will move on and have a 0.5 chance of taking the next true path or 0.5 chance of taking the next false path (taking the false path will lead them to having a 0.5 chance to end up at the 2nd dead end or 0.5 to end up at the 3rd dead end). The agents will finally have a 0.5 chance to end up at the last dead end before reaching the exit. The images and video below demonstrate this logic with an arrival rate of 1000 per hour.
 
-![](images/maze5.PNG?raw=true)
+![](images/Maze5.PNG?raw=true)
 
 <a href="https://youtu.be/HLgM7ynJ0h0" target="_blank"><img src="http://img.youtube.com/vi/HLgM7ynJ0h0/0.jpg"
 alt="Video2" width="240" height="180" border="10" /></a>
